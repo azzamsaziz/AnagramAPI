@@ -71,13 +71,13 @@ namespace AnagramAPI.Controllers
         [HttpDelete(Name = "Delete a Word")]
         [Route("words/{text}")]
         [ProducesResponseType(typeof(Word), 200)]
-        public async Task<IActionResult> Delete([FromBody] Word word)
+        public async Task<IActionResult> Delete([FromQuery] string text)
         {
-            var wordFromDb = await _wordRepository.GetWord(word.Text);
+            var wordFromDb = await _wordRepository.GetWord(text);
             if (wordFromDb == null)
                 return StatusCode(204);
 
-            await _wordRepository.Delete(word.Text);
+            await _wordRepository.Delete(text);
 
             return StatusCode(200, wordFromDb);
         }

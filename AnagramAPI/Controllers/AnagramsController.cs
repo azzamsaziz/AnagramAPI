@@ -41,11 +41,8 @@ namespace AnagramAPI.Controllers
             {
                 return StatusCode(204);
             }
-                
 
             var textOrdered = text.ToLowerInvariant().OrderBy(c => c).ToString();
-            var orderedWords = wordsWithSameLength.OrderBy(word => string.Concat(word.Text.ToLowerInvariant().OrderBy(c => c)));
-
             var results = new List<Word>();
 
             foreach (var wordWithSameLength in wordsWithSameLength)
